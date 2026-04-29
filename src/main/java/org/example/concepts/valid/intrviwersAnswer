@@ -1,0 +1,10 @@
+@Valid is a standard Bean Validation annotation from Jakarta.
+It simply triggers validation on an object and does not support validation groups.
+It is mainly used in controllers for request bodies and DTOs.
+
+@Validated is a Spring-specific annotation.
+It supports validation groups and also enables method-level validation using AOP.
+It is typically used at the service layer or class level.
+
+👉 Key difference:
+@Validated can validate method parameters, @Valid cannot.
