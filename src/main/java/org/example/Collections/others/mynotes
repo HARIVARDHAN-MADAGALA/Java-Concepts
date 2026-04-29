@@ -1,0 +1,34 @@
+--hashtable nullls not allowed
+
+--| Collection  | When equals() = true | Behavior                  |
+| ----------- | -------------------- | ------------------------- |
+| **HashMap** | Same key             | ✅ Replaces old **value**  |
+| **HashSet** | Same element         | ❌ Ignores new **element** |
+
+TreeSet internally uses a Red-Black Tree, a type of self-balancing binary search tree.
+
+--For TreeSet or Treemap must implement Comparable
+
+But your Student class does not implement Comparable,
+so when TreeMap or TreeSet tries to sort it, it fails.
+
+2️⃣ What happens internally
+
+Inside TreeMap.put() or TreeSet.add(), the code calls something like:
+
+compare(key1, key2);
+
+
+If no Comparator was provided, it tries to cast the key (or element) to Comparable:
+
+((Comparable) key1).compareTo(key2);
+
+
+But since your Student class doesn’t implement Comparable,
+that cast fails → ClassCastException.
+
+
+TreeSet<Student> set = new TreeSet<>(Comparator.comparing(s -> s.id));
+// or Comparator.comparing(Student::getName)
+
+

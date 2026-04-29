@@ -1,0 +1,211 @@
+⚡ Java Collection Deep Dive — PriorityQueue (Internal Working)
+1. Introduction
+
+PriorityQueue is a Queue implementation that orders its elements according to their natural order or a custom Comparator.
+Unlike normal queues (FIFO), it removes elements based on priority, not insertion order.
+
+✅ Default = Min-Heap (smallest element has highest priority)
+❌ Not thread-safe
+✅ Allows null → ❌ No (throws NullPointerException)
+
+2. Internal Data Structure
+
+Internally, PriorityQueue uses a binary heap, represented as an array (not a tree object).
+Each element’s position satisfies the heap property:
+
+For Min-Heap: parent <= children
+
+For Max-Heap: parent >= children (if Comparator provided)
+
+3. Source Code Snapshot (Simplified)
+public class PriorityQueue<E> extends AbstractQueue<E>
+    implements java.io.Serializable {
+
+    private transient Object[] queue;  // array-based heap
+    private int size = 0;
+    private final Comparator<? super E> comparator;
+
+    public boolean offer(E e) {
+        if (e == null) throw new NullPointerException();
+        int i = size;
+        if (i >= queue.length) grow();
+        siftUp(i, e); // restore heap property
+        size = i + 1;
+        return true;
+    }
+
+    public E poll() {
+        if (size == 0) return null;
+        int s = --size;
+        E result = (E) queue[0];
+        E x = (E) queue[s];
+        queue[s] = null;
+        if (s != 0)
+            siftDown(0, x); // restore heap property
+        return result;
+    }
+}
+
+4. Internal Working
+Adding an element (offer/add)
+
+Element inserted at the end of array.
+
+Then it’s “sifted up” to its correct position to maintain heap order.
+
+Compares with parent → swaps if smaller (in Min-Heap).
+
+Removing an element (poll)
+
+Removes the root element (highest priority).
+
+Moves the last element to root.
+
+Performs “sift down” to restore heap order.
+
+5. Heap Index Calculations
+
+For any index i:
+
+Parent(i) = (i - 1) / 2
+Left(i) = 2 * i + 1
+Right(i) = 2 * i + 2
+
+6. Visual Representation
+
+Example: inserting elements [30, 20, 50, 10, 40]
+
+Step 1: Insert 30
+
+     30
+
+
+Step 2: Insert 20 → siftUp → 20 < 30 → swap
+
+     20
+    /
+   30
+
+
+Step 3: Insert 50 → stays right
+
+     20
+    /  \
+   30   50
+
+
+Step 4: Insert 10 → 10 < 20 → becomes root
+
+      10
+     /  \
+   20    50
+  /
+ 30
+
+
+Step 5: Insert 40
+
+      10
+     /  \
+   20    50
+  / \
+30  40
+
+
+Poll() → removes 10 → replaces with 40 → siftDown → 20 < 40 → swap → 40 swaps down.
+
+Final structure maintains Min-Heap property again.
+
+7. Example Code
+import java.util.PriorityQueue;
+
+public class PQDemo {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(30);
+        pq.add(20);
+        pq.add(50);
+        pq.add(10);
+
+        System.out.println(pq); // not in sorted order
+        System.out.println(pq.poll()); // 10
+        System.out.println(pq.poll()); // 20
+    }
+}
+
+
+Output:
+
+[10, 20, 50, 30]
+10
+20
+
+
+(Internal array order ≠ sorted order — only heap property maintained)
+
+8. Custom Comparator Example
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a, b) -> b - a);
+maxHeap.add(10);
+maxHeap.add(30);
+maxHeap.add(20);
+System.out.println(maxHeap.poll()); // 30
+
+
+✅ Acts as Max-Heap when comparator reverses order.
+
+9. Time Complexity
+Operation	Time Complexity
+add / offer	O(log n)
+remove / poll	O(log n)
+peek	O(1)
+iteration	O(n)
+10. Null Handling
+
+Does not allow nulls
+
+add(null) → NullPointerException
+
+11. Important Points
+
+✅ Implemented using array-based binary heap
+✅ No nulls or heterogeneous types
+✅ Not thread-safe
+✅ Can use custom comparator for max/min behavior
+✅ Doesn’t guarantee order during iteration
+✅ Used heavily in Dijkstra’s, A*, Job scheduling, etc.
+
+12. Visualization Summary
+Array Representation: [10, 20, 50, 30, 40]
+
+Tree View:
+        10
+       /  \
+     20    50
+    /  \
+  30   40
+
+13. Interview Questions
+
+What is internal data structure of PriorityQueue?
+→ Binary heap (array).
+
+Is PriorityQueue sorted?
+→ No, but root element is always smallest/largest.
+
+What’s the time complexity of insertion/removal?
+→ O(log n).
+
+Can it contain nulls?
+→ ❌ No.
+
+How to make it Max-Heap?
+→ Use custom comparator (a, b) -> b - a.
+
+14. Summary
+
+✅ Uses array-based binary heap
+✅ Default = Min-Heap
+✅ O(log n) insertion/removal
+✅ Custom Comparator possible
+✅ Fast priority-based retrieval
+✅ No nulls, no order guarantee in iteration

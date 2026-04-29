@@ -1,0 +1,78 @@
+🧠 CORE INTERVIEW PROBLEM TYPES (HIGH ROI)
+1. Arrays / Hashing (VERY FREQUENT)
+4
+Problems:
+Two Sum
+Subarray Sum Equals K
+Longest Consecutive Sequence
+Product of Array Except Self
+
+👉 These test: hashmap thinking + prefix sum
+
+2. Sliding Window
+4
+Problems:
+Longest substring (you did)
+Minimum window substring
+Max sum subarray of size K
+Longest repeating character replacement
+
+👉 These test: window control + constraints
+
+3. Two Pointers
+4
+Problems:
+Container with most water
+3Sum
+Remove duplicates from sorted array
+Trapping rain water
+
+👉 These test: optimization thinking
+
+4. Stack / Monotonic Stack
+4
+Problems:
+Valid Parentheses
+Next Greater Element
+Largest Rectangle in Histogram
+
+👉 These test: pattern recognition
+
+5. Binary Search (not just basic)
+4
+Problems:
+Search in rotated sorted array
+Find peak element
+First/last occurrence
+
+👉 These test: boundary control
+
+6. Trees (VERY IMPORTANT)
+4
+Problems:
+Inorder / Preorder / Postorder
+Level order traversal
+Lowest Common Ancestor
+Diameter of tree
+
+👉 These test: recursion + structure thinking
+
+7. Graphs (medium-high level)
+4
+Problems:
+Number of Islands
+BFS / DFS traversal
+Cycle detection
+Topological sort
+8. Heap / Priority Queue
+4
+Problems:
+Kth largest element
+Top K frequent elements
+Merge K sorted lists
+9. Dynamic Programming (don’t avoid this)
+4
+Problems:
+Climbing stairs
+Coin change
+Longest increasing subsequence

@@ -1,0 +1,22 @@
+1 For throwing the checked exception we need to mention in method signature with throws
+
+
+ public OrderDTO createOrder(OrderDTO orderDTO) throws IOException {
+        log.info("Creating new order for user ID: {}", orderDTO.getUserId());
+
+        // VALIDATE ORDER DATA
+        if (orderDTO.getItems() == null || orderDTO.getItems().isEmpty()) {
+            throw new IOException();
+        }
+
+2 For throwing the unchecked exception we no need to mention in method signature with throws
+
+public OrderDTO createOrder(OrderDTO orderDTO) {
+        log.info("Creating new order for user ID: {}", orderDTO.getUserId());
+
+        // VALIDATE ORDER DATA
+        if (orderDTO.getItems() == null || orderDTO.getItems().isEmpty()) {
+            throw new RuntimeException();
+        }
+
+3 We can create exception by extending RuntimeException(unchecked) or extending Exception (both unchecked and checked)  also

@@ -1,0 +1,267 @@
+
+🧠 HashMap — Internal Working (Deep Dive)
+🧩 1. Introduction
+
+HashMap in Java is a part of java.util package and implements the Map interface.
+It stores data as key–value pairs, allowing fast retrieval based on keys.
+It’s non-synchronized, allows one null key and multiple null values, and is not ordered.
+
+🧱 2. Internal Data Structure
+
+Internally, a HashMap uses an array of Nodes (also called buckets).
+
+transient Node<K,V>[] table;
+
+
+Each Node (also known as an entry) looks like this:
+
+static class Node<K,V> implements Map.Entry<K,V> {
+    final int hash;
+    final K key;
+    V value;
+    Node<K,V> next;  // for chaining (linked list)
+}
+
+
+So, each index of the array can hold a linked list (or a red-black tree in JDK 8+).
+
+⚙️ 3. How HashMap Works Internally
+
+When you put a key-value pair:
+
+map.put("John", 25);
+
+Step-by-step flow:
+1️⃣ Compute hash
+
+hashCode() of the key is called:
+
+int hash = key.hashCode();
+
+
+Then Java applies a hashing function to reduce collisions:
+
+hash = hash ^ (hash >>> 16);
+
+
+(This mixes high bits and low bits for better distribution.)
+
+2️⃣ Calculate bucket index
+index = (n - 1) & hash;
+
+
+Where n is the length of the table (usually a power of 2).
+This ensures the index stays within array bounds.
+
+3️⃣ Check if bucket empty
+
+If empty, create a new Node and place it there.
+
+If not empty, check:
+
+If key already exists → replace value.
+
+If key different → add a new node to the linked list (collision handling).
+
+⚔️ 4. Collision Handling
+
+Two keys can have the same index (hash collision).
+Example: “FB” and “Ea” have the same hash code!
+
+Before JDK 8:
+All collided entries formed a linked list at that bucket.
+
+After JDK 8:
+If the number of nodes in a bucket > 8,
+→ The linked list is converted to a Red-Black Tree for faster O(log n) lookup.
+
+🪄 5. Rehashing and Load Factor
+
+HashMap expands when the number of elements exceeds:
+
+threshold = capacity × loadFactor
+
+
+Default:
+
+capacity = 16
+loadFactor = 0.75
+threshold = 12
+
+
+When exceeded → it rehashes, i.e., doubles the capacity and repositions all nodes.
+
+🔁 6. get() Method Working
+map.get("John");
+
+
+1️⃣ Compute hash and index → same as put()
+2️⃣ Go to that index (bucket).
+3️⃣ Traverse list/tree:
+
+If key found → return value.
+
+Else → return null.
+
+⚙️ 7. Internal Visual Representation
+            +-----------------------------+
+            |       HashMap (table)       |
+            +-----------------------------+
+Index 0 --> null
+Index 1 --> [hash:xx, key:"John", val:25] -> [key:"Bob", val:30]
+Index 2 --> null
+Index 3 --> [key:"Emma", val:22]
+...
+
+
+If bucket too long →
+
+   [Node1] → [Node2] → [Node3] → TreeNode(RedBlackTree)
+
+💡 8. Performance
+Operation	Average Time	Worst Case (pre-JDK 8)	JDK 8+
+put() / get()	O(1)	O(n)	O(log n) if treeified
+🧬 9. HashMap in JDK Source
+
+From HashMap.java:
+
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent, boolean evict) {
+    Node<K,V>[] tab; Node<K,V> p; int n, i;
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    else {
+        Node<K,V> e; K k;
+        if (p.hash == hash && ((k = p.key) == key || key.equals(k)))
+            e = p;
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+        else {
+            for (int binCount = 0; ; ++binCount) {
+                if ((e = p.next) == null) {
+                    p.next = newNode(hash, key, value, null);
+                    if (binCount >= TREEIFY_THRESHOLD - 1)
+                        treeifyBin(tab, hash);
+                    break;
+                }
+                if (e.hash == hash && ((k = e.key) == key || key.equals(k)))
+                    break;
+                p = e;
+            }
+        }
+        if (e != null)
+            e.value = value;
+    }
+    ++modCount;
+    if (++size > threshold)
+        resize();
+    return null;
+}
+
+💬 10. Real Code Example
+import java.util.*;
+
+public class HashMapInternalDemo {
+    public static void main(String[] args) {
+        HashMap<String, Integer> map = new HashMap<>();
+
+        map.put("John", 25);
+        map.put("Bob", 30);
+        map.put("Emma", 22);
+        map.put("John", 27); // replaces old value
+
+        for (Map.Entry<String, Integer> e : map.entrySet()) {
+            System.out.println(e.getKey() + " -> " + e.getValue());
+        }
+
+        System.out.println("Value of John: " + map.get("John"));
+    }
+}
+
+🎯 11. Common Interview Questions
+
+1️⃣ How does HashMap handle collisions?
+2️⃣ Difference between HashMap and Hashtable?
+3️⃣ What is the significance of hashCode() and equals()?
+4️⃣ What is load factor and when does resizing occur?
+5️⃣ How does HashMap maintain performance in Java 8+?
+6️⃣ Why are power-of-2 table sizes used in HashMap?
+7️⃣ What happens if two keys have same hash but are not equal?
+
+🚀 12. Key Takeaways
+Concept	Description
+Structure	Array of Nodes (linked list / red-black tree)
+Collision Handling	Chaining
+Resize Trigger	size > capacity × load factor
+Default capacity	16
+Load factor	0.75
+Null keys/values	1 null key, multiple null values
+Thread Safety	Not synchronized
+
+
+
+
+
+1️⃣ How does HashMap handle collisions?
+
+👉 Collisions occur when two keys map to the same bucket index.
+
+In JDK 7 and below, collisions were handled using a Linked List inside each bucket.
+
+In JDK 8 and later, once the number of entries in a bucket exceeds 8, the linked list is converted to a Red-Black Tree, reducing lookup time from O(n) to O(log n).
+
+2️⃣ Difference between HashMap and Hashtable?
+Feature	HashMap	Hashtable
+Synchronization	Non-synchronized (not thread-safe)	Synchronized (thread-safe)
+Nulls allowed?	1 null key, many null values	No null keys/values allowed
+Performance	Faster (no locking)	Slower (locks entire map)
+Introduced in	Java 1.2 (Collection Framework)	Java 1.0 (legacy)
+Modern alternative	ConcurrentHashMap	Deprecated for new code
+3️⃣ What is the significance of hashCode() and equals()?
+
+hashCode() decides which bucket an entry belongs to.
+
+equals() decides if two keys are actually the same (to update or replace value).
+
+✅ If two keys are equal, their hashCode() must be equal.
+If not implemented properly, you can get duplicate or missing entries.
+
+4️⃣ What is load factor and when does resizing occur?
+
+Load Factor = how full the HashMap can get before resizing.
+
+Default load factor = 0.75.
+
+When size > capacity × loadFactor, HashMap rehashes:
+
+Capacity doubles.
+
+All entries are rehashed and redistributed into new buckets.
+
+5️⃣ How does HashMap maintain performance in Java 8+?
+
+Introduced balanced tree (Red-Black Tree) in heavily collided buckets (> 8 nodes).
+
+Introduced hash spreading function hash ^ (hash >>> 16) for better distribution.
+
+Result: avoids long linked lists → consistent O(1) average time even under collisions.
+
+6️⃣ Why are power-of-2 table sizes used in HashMap?
+
+It makes index calculation super fast:
+
+index = (n - 1) & hash;
+
+
+Bitwise AND is faster than modulus (%) and distributes entries more uniformly.
+
+Example: if capacity = 16, the mask (16-1) = 15 (1111b) → keeps only lower 4 bits of hash → efficient indexing.
+
+7️⃣ What happens if two keys have same hash but are not equal?
+
+They go into the same bucket (collision).
+
+During lookup, HashMap compares their equals() method to find the correct key.
+
+If equals returns false, they’re treated as different entries in the same bucket list/tree.

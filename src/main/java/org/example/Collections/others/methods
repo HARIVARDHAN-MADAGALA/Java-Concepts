@@ -1,0 +1,199 @@
+🧭 1️⃣ Root Interface — java.util.Collection<E>
+
+✅ Common for: List, Set, Queue, Deque
+
+Method	Description
+boolean add(E e)	Adds element to collection
+boolean addAll(Collection<? extends E> c)	Adds all elements from another collection
+void clear()	Removes all elements
+boolean contains(Object o)	Checks if element exists
+boolean containsAll(Collection<?> c)	Checks if all elements exist
+boolean isEmpty()	Checks if collection has 0 elements
+Iterator<E> iterator()	Returns iterator
+boolean remove(Object o)	Removes one element
+boolean removeAll(Collection<?> c)	Removes all elements in given collection
+boolean retainAll(Collection<?> c)	Keeps only given elements
+int size()	Number of elements
+Object[] toArray()	Converts to Object array
+<T> T[] toArray(T[] a)	Converts to given array type
+Stream<E> stream()	Returns sequential stream
+Stream<E> parallelStream()	Returns parallel stream
+Spliterator<E> spliterator()	For parallel traversal
+📋 2️⃣ Interface — java.util.List<E>
+
+(Extends Collection → ordered, allows duplicates)
+
+➕ Additional methods:
+Method	Description
+void add(int index, E element)	Inserts at position
+boolean addAll(int index, Collection<? extends E> c)	Inserts a collection at index
+E get(int index)	Get element by position
+E set(int index, E element)	Replace element at index
+E remove(int index)	Remove by index
+int indexOf(Object o)	First occurrence index
+int lastIndexOf(Object o)	Last occurrence index
+ListIterator<E> listIterator()	Iterator that can move both directions
+ListIterator<E> listIterator(int index)	Starts at given index
+List<E> subList(int from, int to)	Sub-view of list
+🪣 Common Implementations:
+🔹 ArrayList
+
+Dynamic array internally.
+
+Fast random access.
+
+Slower insert/remove in middle.
+
+Extra methods:
+None beyond List.
+
+🔹 LinkedList
+
+Doubly linked list.
+
+Also implements Deque.
+
+Extra methods (from Deque):
+
+Method	Description
+void addFirst(E e)	Add at head
+void addLast(E e)	Add at tail
+E getFirst()	Get first element
+E getLast()	Get last element
+E removeFirst()	Remove first
+E removeLast()	Remove last
+E peekFirst()	Peek first
+E peekLast()	Peek last
+🧱 3️⃣ Interface — java.util.Set<E>
+
+(Extends Collection → unique elements, unordered)
+
+Methods same as Collection, but no positional ones.
+🔹 HashSet
+
+Backed by HashMap.
+
+Uses hashCode() & equals() to ensure uniqueness.
+
+No extra methods beyond Set.
+
+🔹 LinkedHashSet
+
+Maintains insertion order.
+
+Also backed by LinkedHashMap.
+
+🔹 TreeSet
+
+Sorted set (Red-Black tree internally).
+
+Uses compareTo() or Comparator.
+
+Extra methods (from NavigableSet):
+
+Method	Description
+E first()	First element
+E last()	Last element
+E lower(E e)	Greatest element < e
+E floor(E e)	≤ e
+E ceiling(E e)	≥ e
+E higher(E e)	> e
+SortedSet<E> subSet(E from, E to)	Range view
+NavigableSet<E> descendingSet()	Reverse view
+Iterator<E> descendingIterator()	Reverse iterator
+🧾 4️⃣ Interface — java.util.Map<K, V>
+
+(Not a Collection → key–value pairs)
+
+Method	Description
+V put(K key, V value)	Add/replace entry
+V get(Object key)	Get value
+V remove(Object key)	Remove by key
+boolean containsKey(Object key)	Key exists
+boolean containsValue(Object value)	Value exists
+Set<K> keySet()	All keys
+Collection<V> values()	All values
+Set<Map.Entry<K,V>> entrySet()	All entries
+V putIfAbsent(K key, V value)	Add only if missing
+void putAll(Map<? extends K,? extends V> m)	Copy all entries
+void clear()	Remove all
+int size()	Entry count
+boolean isEmpty()	Empty check
+V getOrDefault(Object key, V defaultValue)	Default if missing
+V replace(K key, V value)	Replace only if exists
+boolean replace(K key, V oldValue, V newValue)	Conditional replace
+void forEach(BiConsumer<K,V> action)	Iterate
+void compute(K key, BiFunction<K,V,V> f)	Recompute value
+void computeIfAbsent(K key, Function<K,V> f)	Compute only if absent
+void computeIfPresent(K key, BiFunction<K,V,V> f)	Compute only if present
+void merge(K key, V value, BiFunction<V,V,V> f)	Merge two values
+Map<K,V> of(...)	Create immutable map
+🔹 HashMap
+
+Hash table based.
+
+Allows one null key, many null values.
+
+No order guarantee.
+
+🔹 LinkedHashMap
+
+Maintains insertion order.
+
+🔹 TreeMap
+
+Sorted map (Red-Black Tree)
+
+Uses compareTo() or Comparator.
+
+Extra methods:
+
+Method	Description
+K firstKey()	First key
+K lastKey()	Last key
+K lowerKey(K key)	Key < given
+K floorKey(K key)	Key ≤ given
+K higherKey(K key)	Key > given
+K ceilingKey(K key)	Key ≥ given
+NavigableMap<K,V> subMap(...)	Range
+NavigableMap<K,V> descendingMap()	Reverse order
+⏳ 5️⃣ Interface — Queue<E> (FIFO)
+
+Extends Collection, adds queue behavior.
+
+Method	Description
+boolean offer(E e)	Insert (returns false if full)
+E poll()	Remove head, return null if empty
+E remove()	Remove head, throw exception if empty
+E peek()	View head, return null if empty
+E element()	View head, throw exception if empty
+🔹 Implementations:
+
+LinkedList
+
+PriorityQueue (sorted order)
+
+ArrayDeque
+
+🔁 6️⃣ Interface — Deque<E> (Double-ended queue)
+Method	Description
+void addFirst(E e)	Insert front
+void addLast(E e)	Insert end
+E removeFirst()	Remove front
+E removeLast()	Remove end
+E getFirst()	Peek front
+E getLast()	Peek end
+E pollFirst()	Non-throwing front remove
+E pollLast()	Non-throwing end remove
+💡 Bonus: Utility Classes
+🔹 Collections (all static methods)
+Method	Description
+sort(List<T> list)	Sort list
+reverse(List<?> list)	Reverse list
+shuffle(List<?> list)	Random shuffle
+min(Collection<? extends T> c)	Min element
+max(Collection<? extends T> c)	Max element
+frequency(Collection<?> c, Object o)	Count occurrences
+disjoint(Collection<?> c1, Collection<?> c2)	Check no common elements
+unmodifiableList(Set, Map, …)	Immutable wrapper
+synchronizedList(Set, Map, …)	Thread-safe wrapper

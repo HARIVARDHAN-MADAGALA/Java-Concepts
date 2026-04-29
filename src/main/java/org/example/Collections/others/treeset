@@ -1,0 +1,198 @@
+🌳 Java Collection Deep Dive — TreeSet (Internal Working)
+1. Introduction
+
+TreeSet is a SortedSet implementation that stores elements in ascending order by default (or a custom order via Comparator).
+
+Internally, it uses a NavigableMap, specifically a TreeMap, to store elements.
+
+So:
+
+TreeSet<E> = new TreeMap<E, Object>();
+
+
+The value stored in the map is a dummy constant object, similar to HashSet.
+
+2. Key Features
+Feature	Description
+Ordering	Sorted (natural or custom Comparator)
+Duplicates	Not allowed
+Nulls	Not allowed (throws NullPointerException)
+Backed by	TreeMap (Red-Black Tree)
+Thread-safe	❌ No
+Allows heterogeneous objects	❌ No (throws ClassCastException)
+3. Internal Data Structure
+
+TreeSet internally uses a Red-Black Tree, a type of self-balancing binary search tree.
+
+Every insertion or deletion ensures:
+
+Tree remains balanced
+
+Operations stay O(log n)
+
+4. Source Code Simplified
+public class TreeSet<E> extends AbstractSet<E>
+        implements NavigableSet<E>, Cloneable, java.io.Serializable {
+
+    private transient NavigableMap<E, Object> m;
+    private static final Object PRESENT = new Object();
+
+    public TreeSet() {
+        this(new TreeMap<E, Object>());
+    }
+
+    public boolean add(E e) {
+        return m.put(e, PRESENT) == null;
+    }
+}
+
+
+So internally:
+
+TreeSet<Integer> set = new TreeSet<>();
+set.add(10); // internally calls: treeMap.put(10, PRESENT);
+
+5. Internal Working (Step-by-Step)
+
+Let’s say:
+
+TreeSet<Integer> ts = new TreeSet<>();
+ts.add(40);
+ts.add(20);
+ts.add(60);
+ts.add(10);
+ts.add(30);
+
+
+Internally, each add() → TreeMap.put(key, PRESENT)
+
+TreeMap compares the new key with existing ones using compareTo().
+
+Positions the new key in the Red-Black Tree structure.
+
+Re-balances tree if needed.
+
+Resulting structure:
+
+        40
+       /  \
+     20    60
+    / \
+  10  30
+
+6. Red-Black Tree Rules
+
+To stay balanced, the Red-Black Tree maintains these properties:
+
+Each node is either red or black.
+
+Root is always black.
+
+Red nodes cannot have red children.
+
+Every path from a node to its descendant null nodes must have the same number of black nodes.
+
+When you insert/delete:
+
+Tree rebalances itself by performing rotations (left or right).
+
+7. Visual Representation
+TreeSet (uses TreeMap)
+   ↓
+TreeMap (Red-Black Tree)
+
+Example order of insertions: 50, 30, 70, 20, 40
+-----------------------------------------------
+             50(B)
+           /       \
+        30(R)       70(B)
+       /   \
+    20(B)  40(B)
+
+Inorder traversal = Sorted order = [20, 30, 40, 50, 70]
+
+8. Example Code
+import java.util.*;
+
+public class TreeSetDemo {
+    public static void main(String[] args) {
+        TreeSet<Integer> ts = new TreeSet<>();
+        ts.add(50);
+        ts.add(20);
+        ts.add(40);
+        ts.add(10);
+        ts.add(30);
+
+        System.out.println("TreeSet: " + ts);
+    }
+}
+
+
+Output:
+
+TreeSet: [10, 20, 30, 40, 50]
+
+9. Custom Sorting Example
+TreeSet<String> ts = new TreeSet<>(Comparator.reverseOrder());
+ts.add("Hari");
+ts.add("Ajay");
+ts.add("Kiran");
+
+System.out.println(ts);
+
+
+Output:
+
+[Kiran, Hari, Ajay]
+
+10. Performance
+Operation	Average	Worst
+add()	O(log n)	O(log n)
+remove()	O(log n)	O(log n)
+contains()	O(log n)	O(log n)
+iteration	O(n)	O(n)
+11. Null Handling
+
+Not allowed after Java 7
+Throws NullPointerException because comparator cannot compare null values.
+
+12. Important Methods
+Method	Description
+first()	Returns lowest element
+last()	Returns highest element
+higher(E e)	Next higher element
+lower(E e)	Next lower element
+ceiling(E e)	≥ element
+floor(E e)	≤ element
+descendingSet()	Reverse order view
+13. Comparison with Other Sets
+Feature	HashSet	LinkedHashSet	TreeSet
+Order	Unordered	Insertion order	Sorted order
+Null	1 allowed	1 allowed	❌ Not allowed
+Backed by	HashMap	LinkedHashMap	TreeMap
+Performance	O(1)	O(1)	O(log n)
+Allows duplicates	❌	❌	❌
+14. Interview Questions
+
+How does TreeSet maintain order?
+→ Using TreeMap (Red-Black Tree).
+
+Why is insertion O(log n)?
+→ Because each insert navigates the tree height.
+
+Can you store null?
+→ ❌ No.
+
+Difference between HashSet and TreeSet?
+→ HashSet uses HashMap (unordered), TreeSet uses TreeMap (sorted).
+
+How to define custom sorting?
+→ By passing a Comparator in constructor.
+
+15. Summary
+
+✅ Maintains sorted order
+✅ Uses TreeMap (Red-Black Tree) internally
+✅ No nulls or duplicates
+✅ O(log n) for insertion, deletion, search
+✅ Supports NavigableSet methods (range, floor, ceiling, etc.)
