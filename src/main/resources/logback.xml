@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Define a beautiful console logging pattern with colors -->
+    <!-- %d{HH:mm:ss.SSS} -> Time with millisecond precision -->
+    <!-- %highlight(%-5level) -> Severity level with standard colors (Red for error, Yellow for warn, Green for info) -->
+    <!-- %cyan(%thread) -> Thread name in cyan -->
+    <!-- %boldWhite(%logger{36}) -> Class name in white, shortened to 36 chars max -->
+    <!-- %msg%n -> The log message and a newline -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%cyan(%thread)] %highlight(%-5level) %boldWhite(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Configure our custom Logging demo package to show everything (TRACE and above) -->
+    <!-- This allows us to see TRACE and DEBUG statements in our LoggingDemo class! -->
+    <logger name="org.example.Logging" level="TRACE" />
+
+    <!-- Default ROOT level for all third-party libraries (Spring, Hibernate, etc.) -->
+    <!-- Set to INFO to prevent third-party noise from flooding the console -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
