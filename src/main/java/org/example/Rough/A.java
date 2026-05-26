@@ -1,10 +1,21 @@
 package org.example.Rough;
 
-public class A extends Thread{
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-    @Override
-    public void run(){
+public  class A {
 
-        System.out.println("in Thread class");
+    private static A a;
+
+    private A(){};
+
+    public static synchronized A getInstance(){
+
+        if(a == null){
+            a = new A();
+            return a;
+        }
+        return a;
     }
 }

@@ -37,6 +37,7 @@ public class MaximumSumInArrayOfSizek {
 
         int[] num = {50, 1, 1, 1, 40};
 
+
         System.out.println(
 
                 Arrays.toString( method( num,3))

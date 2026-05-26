@@ -17,7 +17,7 @@ public class Mismatch {
 
         List<Character> list = new ArrayList<>();
 
-        word.replaceAll("\\s","");
+            word.replaceAll("\\s","");
 
         for(char i : sentence.toCharArray()){
 

@@ -37,3 +37,21 @@ public class CommomPrefix {
         );
     }
 }
+
+
+
+//public static String method(List<String> list){
+//
+//        String result = "";
+//
+//        for( String word : list){
+//            if ( result.isEmpty()){
+//                result = word;
+//                continue;
+//            }
+//            while( !word.startsWith(result)){
+//                result = result.substring(0,result.length()-1);
+//            }
+//        }
+//        return  result;
+//    }

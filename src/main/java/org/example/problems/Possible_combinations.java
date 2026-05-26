@@ -19,6 +19,7 @@ public class Possible_combinations {
             // add current character alone
             result.add(String.valueOf(ch));
 
+
             // append to existing combinations
             for (int i = 0; i < size; i++) {
                 result.add(result.get(i) + ch);

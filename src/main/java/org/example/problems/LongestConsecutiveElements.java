@@ -32,10 +32,11 @@ public class LongestConsecutiveElements {
                     currlenght++;
                     i++;
                 }
+                MaxLenght = Math.max(MaxLenght,currlenght);
+                currlenght =1;
             }
 
-            MaxLenght = Math.max(MaxLenght,currlenght);
-            currlenght =1;
+
         }
 
         return MaxLenght;

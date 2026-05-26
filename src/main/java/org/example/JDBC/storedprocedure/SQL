@@ -1,0 +1,16 @@
+-- Run this in MySQL Workbench or any SQL client
+DELIMITER $$
+
+CREATE PROCEDURE get_employees_by_dept(
+    IN p_department VARCHAR(100)
+)
+BEGIN
+    SELECT id, name, department, salary
+    FROM   employee
+    WHERE  department = p_department;
+END $$
+
+DELIMITER ;
+
+-- Verify it works directly in MySQL:
+CALL get_employees_by_dept('Engineering');

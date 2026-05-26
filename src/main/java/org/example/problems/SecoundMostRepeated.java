@@ -17,7 +17,7 @@ public class SecoundMostRepeated {
     public static void main(String[] args) {
 
         String word = "aaaabbccbdd";
-        B obj1 = new B();
+//        B obj1 = new B();
 
         System.out.println(
                word.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(c->c, Collectors.counting()))

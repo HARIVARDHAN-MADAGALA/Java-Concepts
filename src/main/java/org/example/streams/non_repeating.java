@@ -8,7 +8,7 @@ public class non_repeating {
     public static void main(String[] args) {
 
         String name = "HSRIVSRFJSHN";
-
+//** name.indexOf(c) returns the index of the first occurrence of c in the string. **//
         Character ch = name.chars()
                 .mapToObj(c->(char)c)
                 .filter(c->name.indexOf(c)==name.lastIndexOf(c))
