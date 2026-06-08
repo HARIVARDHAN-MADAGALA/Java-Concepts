@@ -14,7 +14,7 @@ public class sum_average {
 
         int[] a = {1,56,1,5,5,56};
 
-       Double b =  Arrays.stream(a).average().getAsDouble();
+
         int sum = Arrays.stream(a).sum();
 //        int sum = IntStream.range(0,2).map(i->a[i]).sum();//sum of first two
 

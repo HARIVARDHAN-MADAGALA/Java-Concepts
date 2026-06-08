@@ -42,7 +42,6 @@ public class MergeIntervals {
     public static void main(String[] args) {
 
         List<List<Integer>> list = Arrays.asList( Arrays.asList(1,3),Arrays.asList(2,6),Arrays.asList(8,10),Arrays.asList(15,18) );
-        int[][] arr = {{1,3},{2,6},{8,10},{15,18}}; // [1,6][8,10][15,18]
 
         System.out.println(mergeInterval(list));
     }

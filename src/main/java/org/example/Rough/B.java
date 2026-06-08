@@ -3,24 +3,11 @@ package org.example.Rough;
 import java.util.Comparator;
 import java.util.Map;
 
-public class B  {
+public class B implements Comparator<Map.Entry<Character,Long>> {
 
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public B(String name) {
-        this.name = name;
-    }
 
     @Override
-    public String toString() {
-        return name;
+    public int compare(Map.Entry<Character, Long> o1, Map.Entry<Character, Long> o2) {
+        return o2.getValue().compareTo(o1.getValue());
     }
 }

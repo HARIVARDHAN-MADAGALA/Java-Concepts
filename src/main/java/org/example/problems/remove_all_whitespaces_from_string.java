@@ -19,5 +19,3 @@ public class remove_all_whitespaces_from_string {
         System.out.println(k.removeWhitespaces("sdc dc dc"));
     }
 }
-
-/// System.out.println(s.replaceAll("\\s", ""));

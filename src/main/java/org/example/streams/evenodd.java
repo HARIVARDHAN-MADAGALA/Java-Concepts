@@ -11,7 +11,6 @@ public class evenodd {
 
         List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7);
 
-
         Map<Boolean, List<Integer>> res = list.stream().collect(Collectors.partitioningBy(i -> i % 2 == 0));
         System.out.println(res);
 

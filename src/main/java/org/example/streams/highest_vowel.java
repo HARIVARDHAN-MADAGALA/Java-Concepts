@@ -9,7 +9,7 @@ public class highest_vowel {
 
         String[] s1 = { "Harivardhan","Prashant","Griid Dynamics","TaTa" };
 
-            System.out.println( Arrays.stream(s1).max(Comparator.comparingInt( highest_vowel::vowels)) );
+        System.out.println( Arrays.stream(s1).max(Comparator.comparingInt( highest_vowel::vowels)) );
     }
 
     static int vowels (String s){

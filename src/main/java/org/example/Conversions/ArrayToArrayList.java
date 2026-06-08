@@ -9,9 +9,9 @@ public class ArrayToArrayList {
 
     public static void main(String[] args) {
 
-        int[] arr = { 1, 2, 3, 4, 5 };
+        int[] arr = {1,2,3,4,5};
 
-        List<Integer> list = Arrays.asList(6, 7, 8, 9, 10);
+        List<Integer> list = Arrays.asList(6,7,8,9,10);
 
         /// ArrayList to array
 
@@ -20,7 +20,6 @@ public class ArrayToArrayList {
         /// Array to ArrayList
 
         List<Integer> list2 = Arrays.stream(arr).boxed().toList();
-        List<Integer> list3 = new ArrayList<>(Arrays.stream(arr).boxed().toList());
 
         System.out.println(
 
@@ -30,11 +29,13 @@ public class ArrayToArrayList {
 
         System.out.println(
 
-                list2);
+                list2
+        );
     }
 }
 
-/// What actually happens at runtime?
+
+///What actually happens at runtime?
 ///
 /// Arrays.asList() returns:
 ///
