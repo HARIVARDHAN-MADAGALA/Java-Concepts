@@ -3,6 +3,7 @@ package org.example.concepts.comparator_comparable;
 import org.example.concepts.Innerclass.staic_innerclass.A;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class main {
 
@@ -58,12 +59,6 @@ public class main {
         ///
         /// - works only on numeric types (int, double, etc.)
         /// getName() returns a String
-
-
-
-
-
-
 
 
 

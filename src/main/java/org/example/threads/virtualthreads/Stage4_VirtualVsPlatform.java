@@ -81,7 +81,7 @@ public class Stage4_VirtualVsPlatform {
         System.out.println("Virtual threads (CPU) : " + (System.currentTimeMillis() - start) + "ms");
 
         start = System.currentTimeMillis();
-        java.util.stream.IntStream.range(0, cpuTasks).parallel().forEach(_ -> simulateCPU());
+        java.util.stream.IntStream.range(0, cpuTasks).parallel().forEach(c -> simulateCPU());
         System.out.println("parallelStream  (CPU) : " + (System.currentTimeMillis() - start) + "ms");
         // parallelStream uses ForkJoinPool (platform threads pinned to cores) → faster for CPU work
 
