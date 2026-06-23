@@ -19,12 +19,7 @@ public class Rough {
 
     public static void main(String[] args) {
 
-        String name = "Harivardhan";
 
-        System.out.println(
-
-                name.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(c->c,Collectors.counting()))
-        );
     }
     }
 
