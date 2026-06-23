@@ -20,7 +20,7 @@ package org.example.spring.security;
 ///
 /// Dependencies needed:
 ///   io.jsonwebtoken:jjwt-api:0.12.x
-///   io.jsonwebtoken:jjwt-impl:0.12.x
+///   io.jsonwebtoken:jjwt-im    pl:0.12.x
 ///   io.jsonwebtoken:jjwt-jackson:0.12.x
 
 import io.jsonwebtoken.*;

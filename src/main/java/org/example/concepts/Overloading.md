@@ -115,6 +115,25 @@ show(int... a)
 
 ---
 
+### 🔟 Method Resolution Priority
+
+When no exact match is found, Java follows this order:
+
+1. Exact match
+2. Type promotion (widening) — `byte → short → int → long → float → double`
+3. Autoboxing — `int → Integer`
+4. Varargs — `int...`
+
+```java
+void show(long a)    { System.out.println("widening"); }
+void show(Integer a) { System.out.println("autoboxing"); }
+void show(int... a)  { System.out.println("varargs"); }
+
+show(10); // prints "widening" — widening beats autoboxing and varargs
+```
+
+---
+
 ## 🧠 Example
 
 ```java

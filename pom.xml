@@ -98,6 +98,20 @@
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
             <version>3.3.0</version>
         </dependency>
+
+        <!-- zjsonpatch — structured JSON diff (RFC 6902 patch format) -->
+        <dependency>
+            <groupId>com.flipkart.zjsonpatch</groupId>
+            <artifactId>zjsonpatch</artifactId>
+            <version>0.4.16</version>
+        </dependency>
+
+        <!-- JSONAssert — assert/compare JSON strings -->
+        <dependency>
+            <groupId>org.skyscreamer</groupId>
+            <artifactId>jsonassert</artifactId>
+            <version>1.5.1</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

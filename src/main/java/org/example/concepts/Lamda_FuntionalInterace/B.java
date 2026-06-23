@@ -4,6 +4,13 @@ public class B {
 
     public static void main(String[] args) {
 
+//        A obj = new A() {
+//            public void method(int a, int b) {
+//                System.out.println("1");
+//                System.out.println("2");
+//            }
+//        };
+
         A obj = (a,b) -> {
             System.out.println("1");
             System.out.println("2");

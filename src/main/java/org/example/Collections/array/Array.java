@@ -14,6 +14,8 @@ public class Array {
 
         List<Integer> l = Arrays.asList(1,24,5);
 
+
+
         for(int i=0 ; i<l.size() ; i++){
 //            l.add(233);
         }
