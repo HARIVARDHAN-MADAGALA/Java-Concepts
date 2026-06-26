@@ -58,8 +58,7 @@ public class EmployeeJdbcTemplateService {
     // ── CALL the procedure
     @SuppressWarnings("unchecked")
     public List<Employee> getByDepartment(String dept) {
-        SqlParameterSource in =
-                new MapSqlParameterSource("p_department", dept);
+        SqlParameterSource in = new MapSqlParameterSource("p_department", dept);
 
         Map<String, Object> out = jdbcCall.execute(in);
 

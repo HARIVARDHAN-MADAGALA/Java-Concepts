@@ -1,0 +1,35 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Kafka Overview",
+    "panels": [
+      {
+        "type": "graph",
+        "title": "Under Replicated Partitions",
+        "targets": [ { "expr": "kafka_server_replicamanager_underreplicatedpartitions", "legendFormat": "UnderReplicated" } ],
+        "gridPos": { "x": 0, "y": 0, "w": 12, "h": 6 }
+      },
+      {
+        "type": "graph",
+        "title": "Replica Lag (max)",
+        "targets": [ { "expr": "max(kafka_replica_manager_max_lag_seconds)", "legendFormat": "max_lag" } ],
+        "gridPos": { "x": 12, "y": 0, "w": 12, "h": 6 }
+      },
+      {
+        "type": "graph",
+        "title": "Consumer Group Lag (total)",
+        "targets": [ { "expr": "sum(kafka_consumer_group_current_offset - kafka_consumer_group_committed_offset)", "legendFormat": "total_lag" } ],
+        "gridPos": { "x": 0, "y": 6, "w": 12, "h": 6 }
+      },
+      {
+        "type": "graph",
+        "title": "DLQ Ingress Rate (sum)",
+        "targets": [ { "expr": "sum(increase(kafka_topic_messages_in_total{topic=~\".*-DLQ\"}[5m]))", "legendFormat": "dlq_rate" } ],
+        "gridPos": { "x": 12, "y": 6, "w": 12, "h": 6 }
+      }
+    ],
+    "schemaVersion": 27,
+    "version": 1
+  }
+}
+

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220">
+  <style>
+    .box { fill:#fffaf0; stroke:#d69e2e; stroke-width:1.6; rx:6 }
+    .text { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#2d3748 }
+    .arrow { stroke:#2d3748; stroke-width:1.6; fill:none; marker-end:url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2d3748" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="30" y="30" width="200" height="60" />
+  <text class="text" x="45" y="55">Transactional Producer</text>
+
+  <rect class="box" x="270" y="20" width="220" height="90" />
+  <text class="text" x="285" y="45">Transaction Coordinator</text>
+  <text class="text" x="285" y="65">(persists __transaction_state)</text>
+
+  <rect class="box" x="530" y="10" width="300" height="100" />
+  <text class="text" x="545" y="35">Broker Leaders (topic partitions)</text>
+  <text class="text" x="545" y="55">append with PID+seq, mark transactional</text>
+
+  <path class="arrow" d="M230 60 L270 60" />
+  <path class="arrow" d="M490 60 L530 60" />
+  <path class="arrow" d="M650 110 L650 150" />
+
+  <text class="text" x="320" y="110">beginTransaction() / commitTransaction()</text>
+  <text class="text" x="330" y="130">Coordinator records commit -> broker makes offsets visible</text>
+</svg>
+

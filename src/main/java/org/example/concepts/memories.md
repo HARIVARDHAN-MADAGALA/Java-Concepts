@@ -1,1 +1,1 @@
-![](https://images.openai.com/static-rsc-4/rhqcfdOqBS7Opy50ASAr8sH0YfEnlJ6TTxXN-uxFq_FLN30mfex5eDmTLGXx1hIaowKaX9aZLKduMW6GVY8WxKRV0JoTEw_oBBBhct92VDBQlPbi4u8sAIHIKCbYZj8lqaWm7S1_Kfps7CtyD9r3emq6v8y90caHcIaEIZTFdFbAQn5j8HdjQnowlaYxK-Eq?purpose=fullsize)
+![img_3.png](img_3.png)

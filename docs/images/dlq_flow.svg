@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="180">
+  <style>
+    .box { fill:#f0fff4; stroke:#2f855a; stroke-width:1.4; rx:6 }
+    .text { font-family: Arial, Helvetica, sans-serif; font-size:13px; fill:#22543d }
+    .arrow { stroke:#22543d; stroke-width:1.6; fill:none; marker-end:url(#arrowhead); }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#22543d" />
+    </marker>
+  </defs>
+
+  <rect class="box" x="30" y="30" width="150" height="60" />
+  <text class="text" x="45" y="55">Consumer</text>
+
+  <rect class="box" x="230" y="30" width="150" height="60" />
+  <text class="text" x="245" y="45">Processing</text>
+  <text class="text" x="245" y="65">(transform, call external)</text>
+
+  <rect class="box" x="470" y="10" width="180" height="100" />
+  <text class="text" x="485" y="55">Retry Topic / DLQ</text>
+
+  <path class="arrow" d="M180 60 L230 60" />
+  <path class="arrow" d="M380 60 L470 60" />
+  <path class="arrow" d="M325 100 L325 140 L560 140" />
+
+  <text class="text" x="240" y="105">on failure -> produce to retry topic (attempts++)</text>
+  <text class="text" x="240" y="123">after N attempts -> DLQ</text>
+</svg>
+

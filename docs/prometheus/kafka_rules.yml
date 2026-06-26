@@ -1,0 +1,39 @@
+groups:
+  - name: kafka-alerts
+    rules:
+      - alert: KafkaUnderReplicatedPartitions
+        expr: kafka_server_replicamanager_underreplicatedpartitions > 0
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Under-replicated partitions on Kafka broker"
+          description: "{{ $value }} under-replicated partitions for more than 2 minutes. Check broker disk/network and replica lag."
+
+      - alert: KafkaReplicaLagHigh
+        expr: max(kafka_replica_manager_max_lag_seconds) > 30
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Replica lag high"
+          description: "A replica is lagging more than 30s. Investigate slow follower or GC pauses."
+
+      - alert: KafkaConsumerGroupLag
+        expr: sum(kafka_consumer_group_current_offset - kafka_consumer_group_committed_offset) > 10000
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Consumer group lagging"
+          description: "Total consumer lag across groups > 10k messages. Consider scaling consumers."
+
+      - alert: KafkaDLQSpike
+        expr: increase(kafka_topic_messages_in_total{topic=~".*-DLQ"}[5m]) > 100
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "DLQ message rate spike"
+          description: "Detected significant increase in DLQ messages. Investigate recent deploys or schema mismatches."
+

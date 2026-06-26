@@ -70,3 +70,16 @@ public class EmployeeJdbcService {
         }
     }
 }
+
+/**
+ * Connection conn = dataSource.getConnection();
+ *
+ * PreparedStatement ps = conn.prepareStatement(checkSql);
+ * ResultSet rs = ps.executeQuery();
+ *
+ * Statement stmt = conn.createStatement()
+ * stmt.execute(createProcedure)
+ *
+ * CallableStatement cs = conn.prepareCall(callProcedure)
+ * ResultSet rs = cs.executeQuery()
+ */

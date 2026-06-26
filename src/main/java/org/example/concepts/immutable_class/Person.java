@@ -17,6 +17,8 @@ import java.util.List;
         this.dob = new Date(dob.getTime());
         // defensive copy and make unmodifiable
         this.roles = Collections.unmodifiableList(new ArrayList<>(roles));
+//        this.roles = List.copyOf(roles);  this also fine
+
     }
 
     public String getName() {
