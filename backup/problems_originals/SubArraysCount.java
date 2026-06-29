@@ -1,4 +1,4 @@
-package org.example.problems.sliding_window;
+package CodingINteview.problems.sliding_window;
 
 // get the count of subarrays whose step is decrasing by 1
 // if [3,2,1,4,3]  count = 4 since [3,2,1], [3,2], [2,1], [4,3]

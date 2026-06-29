@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 // 10. Write a method that should return difference of characters
 // (missing char from given string) between given String and Input string.

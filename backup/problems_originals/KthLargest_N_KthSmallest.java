@@ -1,4 +1,4 @@
-package org.example.problems.heaps;
+package CodingINteview.problems.heaps;
 
 //Find Kth largest and Kth smallest element
 //Example: [3,2,1,5,6,4], k = 2

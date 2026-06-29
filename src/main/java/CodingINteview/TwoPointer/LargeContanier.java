@@ -1,7 +1,4 @@
-
-import java.sql.SQLOutput;
-import java.util.*;
-import java.util.stream.Collectors;
+package CodingINteview.TwoPointer;
 
 public class LargeContanier {
 
@@ -26,13 +23,11 @@ public class LargeContanier {
 
             if (arr[start] < arr[end]) {
                 start++;
-                continue;
-            }
+            }else{
             end--;
+            }
         }
-
         System.out.println(max);
-
     }
 
 }

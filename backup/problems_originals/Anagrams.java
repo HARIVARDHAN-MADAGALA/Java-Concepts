@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 /// anagrams  =  same set of letters
 import java.util.Arrays;

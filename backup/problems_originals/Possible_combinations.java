@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 /// given a string "abc" the method should return List<String> which should have all possible combinations of each character in the string.
 ///

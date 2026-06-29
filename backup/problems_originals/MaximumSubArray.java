@@ -1,4 +1,4 @@
-package org.example.problems.sliding_window;
+package CodingINteview.problems.sliding_window;
 
 public class MaximumSubArray {
 

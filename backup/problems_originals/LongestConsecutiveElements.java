@@ -1,4 +1,4 @@
-package org.example.problems.hashing;
+package CodingINteview.problems.hashing;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package org.example.problems;
+package CodingINteview.problems;
 
 import java.util.StringJoiner;
 

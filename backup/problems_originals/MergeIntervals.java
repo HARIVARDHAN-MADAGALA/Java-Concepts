@@ -1,4 +1,4 @@
-package org.example.problems.intervals;
+package CodingINteview.problems.intervals;
 
 import java.util.ArrayList;
 import java.util.Arrays;

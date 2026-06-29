@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 public class reverse_a_String {
 

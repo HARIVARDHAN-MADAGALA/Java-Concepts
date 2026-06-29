@@ -1,4 +1,4 @@
-package org.example.problems;
+package CodingINteview.problems;
 
 public class secound_high_num {
 

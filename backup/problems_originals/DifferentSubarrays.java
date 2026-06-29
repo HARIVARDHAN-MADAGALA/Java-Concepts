@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 import java.util.ArrayList;
 import java.util.List;

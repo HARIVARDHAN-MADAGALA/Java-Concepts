@@ -1,4 +1,4 @@
-package org.example.problems.arrays;
+package CodingINteview.problems.arrays;
 
 import java.util.HashMap;
 import java.util.Map;

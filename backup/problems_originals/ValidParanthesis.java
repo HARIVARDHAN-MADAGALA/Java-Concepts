@@ -1,4 +1,4 @@
-package org.example.problems.stacks;
+package CodingINteview.problems.stacks;
 
 import java.util.HashMap;
 import java.util.List;

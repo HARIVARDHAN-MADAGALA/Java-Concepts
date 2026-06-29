@@ -1,4 +1,4 @@
-package org.example.problems.strings;
+package CodingINteview.problems.strings;
 
 //         Remove consecutive duplicate characters
 //Input: "Suhhaaannii"
