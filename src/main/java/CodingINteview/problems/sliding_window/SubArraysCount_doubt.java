@@ -7,7 +7,7 @@ package CodingINteview.problems.sliding_window;
 import java.util.Arrays;
 import java.util.List;
 
-public class SubArraysCount {
+public class SubArraysCount_doubt {
 
     public static long method(List<Integer> list) {
 
