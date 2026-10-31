@@ -1,6 +1,6 @@
 package org.example.streams;
 
-public class Employee {
+public class Employees {
 
     int id;
     String name;
@@ -15,11 +15,10 @@ public class Employee {
                 '}';
     }
 
-    public Employee(int id, int marks, String name) {
+    public Employees(int id, int marks, String name) {
         this.id = id;
         this.marks = marks;
         this.name = name;
     }
-
 
 }
