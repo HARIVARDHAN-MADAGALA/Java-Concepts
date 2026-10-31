@@ -19,7 +19,20 @@ public class ALL_sorting_Findmax {
 //       Integer num2 = list.stream().min(Comparator.naturalOrder()).get();
 //        Integer num = list.stream().sorted(Collections.reverseOrder()).findFirst().get();
       //  Integer num = list.stream().max((a, b) -> (a<b ? -1 : ((a == b) ? 0:1))).get();
+        Integer numa = list.stream().max((a, b) -> a.compareTo(b)).get();
+
 
         System.out.println(num);
     }
 }
+
+
+// max/min
+
+// (a, b) -> Integer.compare(a,b)
+//Integer::compare
+//(a, b) -> a.compareTo(b)
+//Comparator.naturalOrder()
+//Collections.reverseOrder()
+//Comparator.comparing((a -> a))
+//(a, b) -> (a<b ? -1 : ((a == b) ? 0:1))

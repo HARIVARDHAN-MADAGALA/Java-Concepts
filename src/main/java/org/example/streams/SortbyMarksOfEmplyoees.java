@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 public class SortbyMarksOfEmplyoees {
 
     public static void main(String[] args) {
-    Employee e1 = new Employee(1,99,"hari");
-    Employee e2 = new Employee(2,93,"hari1");
+    Employees e1 = new Employees(1,99,"hari");
+    Employees e2 = new Employees(2,93,"hari1");
 
-    Employee e3 = new Employee(2,39,"hari2");
+    Employees e3 = new Employees(2,39,"hari2");
 
-    Employee e4 = new Employee(3,349,"hari3");
+    Employees e4 = new Employees(3,349,"hari3");
 
-    ArrayList<Employee> list = new ArrayList<>();
+    ArrayList<Employees> list = new ArrayList<>();
     list.add(e1);
     list.add(e2);
     list.add(e3);

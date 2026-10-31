@@ -23,7 +23,7 @@ public class SecoundMostRepeated {
 
         String word = "aaaabbccbdd";
 
-               word.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(c->c, Collectors.counting()));
+        word.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(c->c, Collectors.counting()));
 
 
     }

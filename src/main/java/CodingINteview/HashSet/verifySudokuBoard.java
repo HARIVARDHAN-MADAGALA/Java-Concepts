@@ -71,6 +71,7 @@ import java.util.*;
 
 
             verifySudokuBoard(board);
+            System.out.println();
 
         }
 

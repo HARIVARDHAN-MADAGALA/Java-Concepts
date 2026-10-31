@@ -1,6 +1,7 @@
 package org.example.Rough;
 
-public class A extends Thread{
+public class
+    A extends Thread{
 
     @Override
     public void run(){

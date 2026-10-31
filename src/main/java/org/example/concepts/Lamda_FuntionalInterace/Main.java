@@ -1,5 +1,7 @@
 package org.example.concepts.Lamda_FuntionalInterace;
 
+import java.util.function.Predicate;
+
 @FunctionalInterface
 interface Calculator {
 

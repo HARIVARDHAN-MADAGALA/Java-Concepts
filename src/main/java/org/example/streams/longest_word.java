@@ -18,9 +18,9 @@ public class longest_word {
 //                .reduce((a, b) -> a.length() >= b.length() ? a : b)
 //                .orElse(null);
 //
-//         /3rd way
+//         3rd way
 //        String longest = words.stream()
-//                .max(Comparator.comparingInt(String::length))
+//                .max(Comparator.comparingInt(s -> s.length()))
 //                .orElse(null);
 
 //        4th way

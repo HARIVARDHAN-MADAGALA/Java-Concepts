@@ -18,7 +18,6 @@ public class frequency {
                                 .collect(Collectors.toSet());
         System.out.println(dup);
 
-
         System.out.println(result);
     }
 

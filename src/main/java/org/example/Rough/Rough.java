@@ -17,9 +17,15 @@ import java.util.stream.Stream;
 public class Rough {
 
 
+
+    Optional<List<Integer>> p  = Optional.empty();;
+
+
     public static void main(String[] args) {
 
+        Rough r = new Rough();
 
+        r.p.ifPresent(c -> c.add(8));
     }
     }
 

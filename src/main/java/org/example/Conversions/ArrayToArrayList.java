@@ -15,7 +15,7 @@ public class ArrayToArrayList {
 
         /// ArrayList to array
 
-        int[] arr2 = list.stream().mapToInt(c -> Integer.valueOf(c)).toArray();
+        int[] arr2 = list.stream().mapToInt(c -> c).toArray();
 
         /// Array to ArrayList
 

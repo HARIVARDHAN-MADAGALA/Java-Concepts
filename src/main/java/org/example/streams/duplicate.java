@@ -8,8 +8,8 @@ public class duplicate {
 
     List<Integer> list = Arrays.asList(234,345,345643,23,23,23443);
 
-
     HashSet<Integer> set = new HashSet<>();
+
     Set<Integer> list2 = list.stream().filter(i->!set.add(i)).collect(Collectors.toSet());
         System.out.println(list2);
 

@@ -16,7 +16,7 @@ public class evenodd {
 
 
         ///  Sum of even numbers
-        System.out.println(list.stream().filter(c -> c%2 == 0).mapToInt(Integer::intValue).sum());
+        System.out.println(list.stream().filter(c -> c % 2 == 0).mapToInt(Integer::intValue).sum());
 
 
     }

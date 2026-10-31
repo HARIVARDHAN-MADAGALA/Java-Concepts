@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 /**
  * Way 1: Plain JDBC — create and call in the same service
  */
+
 @Service
 public class EmployeeJdbcService {
 

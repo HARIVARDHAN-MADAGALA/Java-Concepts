@@ -24,7 +24,7 @@ class Result {
         for (Future<Long> f : futures) {
             try {
                 sum += f.get(); // waits for result
-            } catch (Exception e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }

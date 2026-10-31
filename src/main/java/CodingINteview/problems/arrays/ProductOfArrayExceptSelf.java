@@ -18,7 +18,7 @@ public class ProductOfArrayExceptSelf {
             product = product * arr[i-1];
             result[i] = product;
         }
-        System.out.println(Arrays.toString(result));
+//        System.out.println(Arrays.toString(result));
 
         //product result {1,1,2,6} with arr in reverse direction
 
@@ -31,6 +31,7 @@ public class ProductOfArrayExceptSelf {
 
         return result;
     }
+
     public static void main(String[] args) {
 
         int[] arr = {1,2,3,4};
@@ -41,3 +42,47 @@ public class ProductOfArrayExceptSelf {
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//NOT RECOMMENDED
+
+//public static int[] productOfArrayExceptSelf2(int[] arr){
+//
+//    int[] result = new int[arr.length];
+//
+//    int product = 1;
+//
+//    for( int i : arr){
+//        product *= i;
+//    }
+//
+//    product = product / arr[0];
+//    result[0] = product;
+//
+//    for (int i = 1; i < arr.length; i++){
+//        result[i] = (product/arr[i]) * arr[i-1];
+//        product = result[i];
+//    }
+//
+//    return result;
+//}

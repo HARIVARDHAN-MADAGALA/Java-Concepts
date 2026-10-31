@@ -61,9 +61,6 @@ public class longest_non_repeated_substring {
 
         longest_non_repeated_substring obj = new longest_non_repeated_substring();
         System.out.println(obj.lengthOfLongestSubstring(name));
-
-
-
     }
 
 

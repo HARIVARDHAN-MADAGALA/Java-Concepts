@@ -3,7 +3,7 @@ package org.example.threads.race_condition;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Race extends Thread  {
+public class  Race extends Thread  {
 
     static int count = 0;
 

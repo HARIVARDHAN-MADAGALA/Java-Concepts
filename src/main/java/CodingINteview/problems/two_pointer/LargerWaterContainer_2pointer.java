@@ -1,6 +1,7 @@
 package CodingINteview.problems.two_pointer;
 
-public class LargerWaterContainer_2pointer {
+public class
+LargerWaterContainer_2pointer {
 
     public static int method(int[] nums) {
 

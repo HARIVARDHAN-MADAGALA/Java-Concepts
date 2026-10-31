@@ -65,3 +65,13 @@ public class EmployeeJdbcTemplateService {
         return (List<Employee>) out.get("employees");
     }
 }
+
+//  jdbcTemplate.execute()
+//
+//  jdbcCall = new SimpleJdbcCall(jdbcTemplate)
+//                .withProcedureName("get_employees_by_dept")
+//                .returningResultSet(
+//
+//   Map<String, Object> out = jdbcCall.execute(in);
+
+

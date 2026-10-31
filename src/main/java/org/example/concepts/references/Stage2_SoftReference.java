@@ -2,6 +2,8 @@ package org.example.concepts.references;
 
 import java.lang.ref.Cleaner;
 import java.lang.ref.SoftReference;
+import java.util.HashMap;
+import java.util.Map;
 
 /// Stage 2 — SoftReference
 /// JVM keeps the object as long as memory is available
@@ -28,8 +30,8 @@ public class Stage2_SoftReference {
     static class ImageCache {
 
         // value is SoftReference — GC can collect it when memory is low
-        private final java.util.Map<String, SoftReference<CachedImage>> cache
-                = new java.util.HashMap<>();
+        private final Map<String, SoftReference<CachedImage>> cache
+                = new HashMap<>();
 
         CachedImage get(String filename) {
             SoftReference<CachedImage> ref = cache.get(filename);

@@ -9,8 +9,6 @@ public class prefix_suffix_delimiter {
 
     public static void main(String[] args) {
 
-
-
         List<String> fruits = List.of("apple", "banana", "mango");
 
        String lis = fruits.stream().collect(Collectors.joining("delimiter", "prefix", "suffix"));

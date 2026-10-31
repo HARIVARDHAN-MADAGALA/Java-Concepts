@@ -42,7 +42,7 @@ public class JpaPerformanceDemoService {
      *  - Accessing dept.getEmployees() in a loop → N extra queries
      *
      * 🔑 KEY DIFFERENCE (very common interview question!):
-     *  ─────────────────────────────────────────────────────────────
+     *  ────────────────────────────────────────────────────────────
      *  JOIN FETCH (no LEFT) → INNER JOIN
      *    → Departments with NO employees are EXCLUDED from results!
      *
@@ -52,7 +52,7 @@ public class JpaPerformanceDemoService {
      *  ─────────────────────────────────────────────────────────────
      *
      * ⚠️ WARNING: Never use JOIN FETCH with Pageable!
-     *    Hibernate will load ALL records in memory then paginate → OOM risk.
+     *    Hibernate will load ALL records in memory then paginate → OutOFMemory risk.
      *    Use EntityGraph for paginated queries that need associations.
      */
     public void demonstrateJoinFetch() {

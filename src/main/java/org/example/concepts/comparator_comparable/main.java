@@ -35,12 +35,17 @@ public class main {
         Collections.sort(list,(a,b) -> b.name.compareTo(a.name));
         list.sort((a,b) -> b.name.compareTo(a.name));
 
+        //by Anonoymous
         Comparable<A> a = new Comparable<A>() {
             @Override
             public int compareTo(A o) {
                 return 0;
             }
         };
+
+        // by lamda
+        Comparator<Student> com = ( x,y) ->Integer.compare(y.id,x.id);
+
 
 
 
